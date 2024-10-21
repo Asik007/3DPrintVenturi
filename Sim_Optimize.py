@@ -15,7 +15,7 @@ def PiezoHeight(d1, d2, Flow_m3_s):
 
 
 
-def surface_plot(func, x_range, y_range,t = Flow_m3_s, resolution=50):
+def surface_plot(func, x_range, y_range,t_range, resolution=50):
     """
     Creates a surface plot of a function of two variables.
 
@@ -31,19 +31,27 @@ def surface_plot(func, x_range, y_range,t = Flow_m3_s, resolution=50):
     # Generate mesh grid for x and y
     x = np.linspace(x_range[0], x_range[1], resolution)
     y = np.linspace(y_range[0], y_range[1], resolution)
-    X, Y = np.meshgrid(x, y)
+    t = np.linspace(t_range[0], t_range[1], 10)
+    X, Y, T = np.meshgrid(x, y, t)
 
     # Compute Z values using the function
-    Z = func(X, Y, t)
+    Z = func(X, Y, T)
 
     print(Z)
     fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
+    mask = Z <= 0.1
+    X_filtered = X[mask]
+    Y_filtered = Y[mask]
+    Z_filtered = T[mask]
+    F_filtered = Z[mask]
     # Plot the surface
-    ax.plot_surface(X, Y, Z, cmap='viridis')
+    sc = ax.scatter(X_filtered, Y_filtered, Z_filtered, c=F_filtered, cmap='viridis')
+    # Add a color bar
+    plt.colorbar(sc)
     # Show the plot
     plt.show()
 
 # Example usage:
 # surface_plot(lambda x, y: np.sin(np.sqrt(x**2 + y**2)), (-5, 5), (-5, 5))
-surface_plot(PiezoHeight, d1, d2)
+surface_plot(PiezoHeight, d1, d2, Flow_m3_s)

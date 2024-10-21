@@ -4,7 +4,7 @@ from manim import *
 class VenturiTubeBernoulli3D(ThreeDScene):
     def construct(self):
         # Set up the 3D axes and camera
-        self.set_camera_orientation(phi=60 * DEGREES, theta=45 * DEGREES)
+        self.set_camera_orientation(phi=90 * DEGREES, theta=45 * DEGREES, gamma=0 * DEGREES)
         axes = ThreeDAxes()
 
         # Define the Venturi tube shape using parametric surfaces
@@ -40,8 +40,8 @@ class VenturiTubeBernoulli3D(ThreeDScene):
         self.play(Create(tube))
 
         # Animate fluid flow in the wide and narrow sections
-        self.play(LaggedStartMap(GrowArrow, arrows_wide, lag_ratio=0.1))
-        self.play(LaggedStartMap(GrowArrow, arrows_narrow, lag_ratio=0.1))
+        # self.play(LaggedStartMap(GrowArrow, arrows_wide, lag_ratio=0.1))
+        # self.play(LaggedStartMap(GrowArrow, arrows_narrow, lag_ratio=0.1))
 
         # Add labels for velocity and pressure
         v1_label = MathTex("v_1").move_to([-3.5, 1.5, 0])
