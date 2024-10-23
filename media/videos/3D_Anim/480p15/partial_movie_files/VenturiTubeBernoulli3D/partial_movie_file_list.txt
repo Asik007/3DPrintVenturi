@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:C:/Users/Dynames/School/Junior/BME325/3DPrintVenturi/media/videos/3D_Anim/480p15/partial_movie_files/VenturiTubeBernoulli3D/3877630239_2191998458_2801054282.mp4'
-file 'file:C:/Users/Dynames/School/Junior/BME325/3DPrintVenturi/media/videos/3D_Anim/480p15/partial_movie_files/VenturiTubeBernoulli3D/1781706262_3494816192_1637441413.mp4'

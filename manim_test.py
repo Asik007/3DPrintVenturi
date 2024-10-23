@@ -57,22 +57,22 @@ class VenturiTubeBernoulli(VoiceoverScene):
         with self.voiceover(text="Hello! Today, we’ll be exploring how a Venturimeter works.") as track:
             self.play(Write(Title), FadeIn(image))
             self.wait(2)
-            self.play(FadeOut(image))
+            self.play(FadeOut(image), run_time=track.duration)
 
-        
+
 
         self.wait(.2)
         self.play(Write(tube), run_time=4)
         
         # Labels for pressure and velocity at wide and narrow sections
-        Q1 = MathTex("\dot{Q}_{In}").move_to(middle_1)
-        Q2 = MathTex("\dot{Q}_{Middle}").move_to(middle_2)
-        Q3 = MathTex("\dot{Q}_{Out}").move_to(middle_3)
-        Qin1 = MathTex("\dot{Q}_{In}").move_to(middle_1)
-        Qout = MathTex("\dot{Q}_{Out}").move_to(middle_3)
-        ConvMass = Text("Conservation of Mass", font_size=256).move_to([0,20,0])
-        BernEq = Text("Bernoulli's Equation", font_size=256).move_to([0,20,0])
-        Takeaway = Text("Takeaways", font_size=256).move_to([0,20,0])
+        Q1 = MathTex(r"\dot{Q}_{In}").move_to(middle_1)
+        Q2 = MathTex(r"\dot{Q}_{Middle}").move_to(middle_2)
+        Q3 = MathTex(r"\dot{Q}_{Out}").move_to(middle_3)
+        Qin1 = MathTex(r"\dot{Q}_{In}").move_to(middle_1)
+        Qout = MathTex(r"\dot{Q}_{Out}").move_to(middle_3)
+        ConvMass = Text(r"Conservation of Mass", font_size=256).move_to([0,20,0])
+        BernEq = Text(r"Bernoulli's Equation", font_size=256).move_to([0,20,0])
+        Takeaway = Text(r"Takeaways", font_size=256).move_to([0,20,0])
         V_take = MathTex(r"v_{Middle} \geq v_{In}").move_to(UP * 15).scale(8)
         P_take = MathTex(r"P_{Middle} \leq P_{In}").move_to(UP * 15).scale(8)
         
@@ -297,8 +297,9 @@ class VenturiTubeBernoulli(VoiceoverScene):
         self.wait(1)
         self.play(FadeOut(BernoulliEquation6), FadeIn(BernFin))
         self.wait(1)
-        self.play(FadeOut(BernFin), FadeIn(sol), FadeOut(rho), FadeOut(Q_in))
+        self.play(FadeOut(BernFin), FadeIn(sol))
         self.wait(1)
+        self.play(FadeOut(rho), FadeOut(Q_in))
         P_take = MathTex(r"P_{Middle} \leq P_{In}").move_to(DOWN * 15).scale(8)
         self.play(FadeOut(BernEq),
                    FadeIn(Takeaway), FadeIn(P_take), FadeIn(V_take)) 
@@ -306,12 +307,14 @@ class VenturiTubeBernoulli(VoiceoverScene):
         h_diff = MathTex(r"\Delta h = \frac{\Delta P}{g \cdot \rho}").move_to(DOWN * 0).scale(8)
         h_diff2 = MathTex(r"\Delta h = \frac{21.11}{9.81 \cdot 1000}").move_to(DOWN * 0).scale(8)
         h_diff3 = MathTex(r"\Delta h = 0.0021517 \, \text{m}").move_to(DOWN * 0).scale(8)
-        grav = MathTex(r"g = 9.81 \frac{m}{s^2}").move_to(DOWN * 17.5 + RIGHT * 20).scale(8)
+        rho = MathTex(r"\rho = 1000 \frac{kg}{m^3}").move_to(DOWN * 15 + LEFT * 25).scale(8)
+        grav = MathTex(r"g = 9.81 \frac{m}{s^2}").move_to(DOWN * 15 + RIGHT * 25).scale(8)
         self.wait(1)
-        self.play(FadeOut(P_take), FadeOut(V_take))
+        self.play(FadeOut(P_take), FadeOut(V_take), FadeOut(Takeaway))
         self.wait(1)
         self.play(FadeIn(grav), FadeIn(rho), sol.animate.shift(DOWN * 15), FadeIn(h_diff))
         self.wait(1)
         self.play(FadeIn(h_diff2), FadeOut(h_diff))
         self.wait(1)
         self.play(FadeIn(h_diff3), FadeOut(h_diff2))
+        self.wait(1)
