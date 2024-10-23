@@ -4,7 +4,8 @@ import numpy as np
 # Example Input Variables
 d1 = 10/1000  # Diameter of section 1 in meters
 d2 = 5/1000  # Diameter of section 2 in meters
-Flow_m3_s = (5/6)*(1/(10 ** 5)) # Volumetric flow rate in m³/s
+Flow_m3_s = .0007168/60 # Volumetric flow rate in m³/s
+Flow_m3_s = (.01/40)/60 #1l in 35.24s
 
 def PiezoHeight(d1,d2,Flow_m3_s):
     Flow_m3_min = Flow_m3_s * 60  # Convert m3/min to m3/s
